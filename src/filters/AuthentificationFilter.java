@@ -37,8 +37,8 @@ public class AuthentificationFilter implements Filter {
 		// place your code here
 
 		// pass the request along the filter chain
-		// chain.doFilter(request, response);
-		response.getWriter().println("Salut");
+		chain.doFilter(request, response);
+		// response.getWriter().println("Salut");
 		
 		
 		
