@@ -10,31 +10,31 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import model.Cours;
-import dao.CoursDao;
 
+import dao.SujetDao;
+import model.Sujet;
 
-@Path("/formation/sujet/courses")
-public class Courses {
+@Path("/formation/sujet")
+public class Sujets {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Set<Cours> cours(){
-		return CoursDao.list().collect(Collectors.toSet()); // elle permet de transformer un stream à un autre type de données
+	public Set<Sujet> sujets(){
+		return SujetDao.list().collect(Collectors.toSet()); // elle permet de transformer un stream à un autre type de données
 	}
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path ("/{id}")
-	public Cours find(@PathParam("id") Integer identifiant) {
-		return CoursDao.list().filter(t -> t.getId() == identifiant).findFirst().get();
+	public Sujet find(@PathParam("id") Integer identifiant) {
+		return SujetDao.list().filter(s -> s.getId() == identifiant).findFirst().get();
 	}
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Cours create(Cours cours) {
-		return CoursDao.create(cours);
+	public Sujet create(Sujet sujet) {
+		return SujetDao.create(sujet);
 	}
 
 }

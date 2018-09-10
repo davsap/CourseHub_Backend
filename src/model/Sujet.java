@@ -31,6 +31,30 @@ public class Sujet {
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_sujet")
 	Set<Cours> cours;
-	
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getTitre() {
+		return titre;
+	}
+
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
+
+	public Set<Cours> getCours() {
+		return cours;
+	}
+
+	public void setCours(Set<Cours> cours) {
+		this.cours = cours;
+	}
+	
+public Sujet() {}
 }
