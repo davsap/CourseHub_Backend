@@ -33,6 +33,8 @@ public class User {
 	@Column(name="pseudo")
 	private String pseudo;
 	
+	
+
 	@Column(name="situation") 
 	private String situation;
 	
@@ -47,6 +49,13 @@ public class User {
 	
 	@Column(name="pays")
 	private String pays;
+	
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", pseudo=" + pseudo
+				+ ", situation=" + situation + ", password=" + password + ", ville=" + ville + ", zip=" + zip
+				+ ", pays=" + pays + "]";
+	}
 
 	public String getNom() {
 		return nom;
