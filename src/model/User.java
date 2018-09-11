@@ -137,6 +137,15 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", pseudo=" + pseudo
+				+ ", situation=" + situation + ", password=" + password + ", ville=" + ville + ", zip=" + zip
+				+ ", pays=" + pays + "]";
+	}
+	
+	
 		
 
 }
