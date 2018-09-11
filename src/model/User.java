@@ -21,18 +21,88 @@ public class User {
 	@Column(name="id_utilisateur")
 	private Integer id;
 	
+	@Column(name="nom")
+	private String nom;
+	
+	@Column(name="prenom")
+	private String prenom;
+	
 	@Column(name="email")
 	private String email;
+	
+	@Column(name="pseudo")
+	private String pseudo;
+	
+	@Column(name="situation") 
+	private String situation;
 	
 	@Column(name="password")
 	private String password;
 	
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", password=" + password + "]";
+	@Column(name="ville")
+	private String ville;
+	
+	@Column(name="zip")
+	private String zip;
+	
+	@Column(name="pays")
+	private String pays;
+
+	public String getNom() {
+		return nom;
 	}
 
-	public User() {}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public String getPseudo() {
+		return pseudo;
+	}
+
+	public void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
+	}
+
+	public String getSituation() {
+		return situation;
+	}
+
+	public void setSituation(String situation) {
+		this.situation = situation;
+	}
+
+	public String getVille() {
+		return ville;
+	}
+
+	public void setVille(String ville) {
+		this.ville = ville;
+	}
+
+	public String getZip() {
+		return zip;
+	}
+
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
+
+	public String getPays() {
+		return pays;
+	}
+
+	public void setPays(String pays) {
+		this.pays = pays;
+	}
 	
 	/*public User() {
 		this.formations=new HashSet<>();

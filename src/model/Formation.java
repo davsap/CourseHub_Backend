@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity(name="formations")
@@ -38,16 +39,17 @@ public class Formation {
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "formations_users", 
-
-	joinColumns = { @JoinColumn(name = "id_formation") },
-
+		joinColumns = { @JoinColumn(name = "id_formation") },
 		inverseJoinColumns = { @JoinColumn(name = "id_utilisateur") })
-
 	private Set<User> users;
 	
 	public Formation() {
 		this.users=new HashSet<>();
 	}
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_utilisateur")
+	private User user;
 	
 	
 	public void addUser (User us) {
