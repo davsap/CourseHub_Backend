@@ -15,13 +15,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Entity(name="formations")
-@Table(name="formation")
+@Entity(name="Formations")
+@Table(name="Formations")
 public class Formation {
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	@Column(name="id_formations")
+	@Column(name="id_formation")
 	private Integer id;
 	
 	@Column(name="titre")

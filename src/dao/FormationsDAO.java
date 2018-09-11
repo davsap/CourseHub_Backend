@@ -18,7 +18,7 @@ public class FormationsDAO {
 	try {
 		t = s.beginTransaction();
 		//code
-		result = s.createQuery("FROM formations").list().stream();
+		result = s.createQuery("FROM Formations").list().stream();
 		
 		t.commit();
 		

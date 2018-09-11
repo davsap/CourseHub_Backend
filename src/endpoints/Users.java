@@ -20,7 +20,6 @@ public class Users {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Set<User> list(){
-		
 		return UserDAO.list().collect(Collectors.toSet()); // elle permet de transformer un stream à un autre type de données
 	}
 	@GET
