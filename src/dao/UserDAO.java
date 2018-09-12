@@ -1,11 +1,13 @@
 package dao;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import helpers.HibernateHelper;
 import model.Formation;
@@ -59,6 +61,32 @@ public class UserDAO {
 		}
 		return u;
 
+	}
+
+	public static Optional<User> findByLoginInfo(String userName, String password) {
+		Session session = HibernateHelper.getSessionFactory().openSession();
+		Transaction transcation = null;
+		Optional<User> result = Optional.empty();
+		try {
+			transcation = session.beginTransaction();
+			// code
+			Query query = session.createQuery("FROM Utilisateurs u where u.pseudo= :username and u.password = :password");
+			query.setParameter("username", userName);
+			query.setParameter("password", password);
+			result = query.stream().findFirst();
+		
+						transcation.commit();
+
+		} catch (Exception e) {
+			if (transcation != null)
+				transcation.rollback();
+
+		} finally {
+
+			session.close();
+
+		}
+		return result;
 	}
 
 	public static User delete(User u) {
