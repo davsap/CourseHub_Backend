@@ -32,7 +32,7 @@ public class Cours {
 	private String video;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="id_cours")
+	@JoinColumn(name="id_sujet")
 	@JsonIgnore
 	private Sujet sujet;
 

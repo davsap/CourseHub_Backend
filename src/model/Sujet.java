@@ -28,8 +28,7 @@ public class Sujet {
 	@Column(name="titre")
 	private String titre;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_sujet")
+	@OneToMany(mappedBy = "sujet",cascade = CascadeType.ALL)
 	Set<Cours> cours;
 
 	public Integer getId() {
