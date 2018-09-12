@@ -14,7 +14,7 @@ import javax.ws.rs.core.MediaType;
 import dao.SujetDao;
 import model.Sujet;
 
-@Path("/formation/sujet")
+@Path("/formations/sujets")
 public class Sujets {
 	
 	@GET

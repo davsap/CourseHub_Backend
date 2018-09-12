@@ -23,12 +23,14 @@ public class Formations {
 		
 		return FormationsDAO.list().collect(Collectors.toSet()); // elle permet de transformer un stream à un autre type de données
 	}
+	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path ("/{id}")
 	public Formation find(@PathParam("id") Integer identifiant) {
 		return FormationsDAO.list().filter(t -> t.getId() == identifiant).findFirst().get();
 	}
+	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)

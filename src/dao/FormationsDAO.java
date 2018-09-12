@@ -4,6 +4,7 @@ import java.util.stream.Stream;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import helpers.HibernateHelper;
 import model.Formation;
@@ -34,7 +35,31 @@ public class FormationsDAO {
 	return result;
 	}
 	
-	
+	public static Stream<Formation> list(Integer userID){
+		Session s = HibernateHelper.getSessionFactory().openSession();
+		Transaction t= null;
+		Stream<Formation> result = null;
+		
+	try {
+		t = s.beginTransaction();
+		//code
+		Query query = s.createQuery("FROM Formations f inner join users u where u.id= :userID");
+		query.setParameter("sujetID",userID);
+		result = query.list().stream();
+		
+		t.commit();
+		
+	}catch(Exception e) {
+		if(t !=null)
+			t.rollback();
+
+	} finally {
+
+		s.close();
+
+	}
+	return result;
+	}
 	public static Formation create(Formation f) {
 		
 		Session s = HibernateHelper.getSessionFactory().openSession();
