@@ -36,4 +36,12 @@ public class Formations {
 		return FormationsDAO.create(f);
 	}
 	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path ("/user/{id}")
+	public Formation findByUserID(@PathParam("id") Integer identifiant) {
+		
+		return FormationsDAO.list().filter(t -> t.getId() == identifiant).findFirst().get();
+	}
+	
 }
