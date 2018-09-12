@@ -56,8 +56,10 @@ public class Users {
 			
 			if(result.isPresent()) {
 				user = result.get();
+				String token = createToken(user.getId());
+				user.setToken(token);
 				
-				response.addHeader("token", createToken(user.getId()));
+				response.addHeader("token", token);
 			}else {
 				response.sendError(HttpServletResponse.SC_FORBIDDEN);
 			}

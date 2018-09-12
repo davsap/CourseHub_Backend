@@ -98,6 +98,16 @@ public class User {
 		this.pays = pays;
 	}
 
+	
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name="id_utilisateur")
@@ -129,6 +139,8 @@ public class User {
 	
 	@Column(name="pays")
 	private String pays;
+	
+	private String token;
 
 	@Override
 	public String toString() {
