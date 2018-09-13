@@ -14,20 +14,20 @@ import javax.ws.rs.core.MediaType;
 import dao.SujetDao;
 import model.Sujet;
 
-@Path("/formations/sujets")
+@Path("/formations/{id}/sujets")
 public class Sujets {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Set<Sujet> sujets(){
-		return SujetDao.list().collect(Collectors.toSet()); // elle permet de transformer un stream à un autre type de données
+	public Set<Sujet> sujets(@PathParam("id") int id){
+		return SujetDao.list().filter(s -> s.getFormation().getId() == id).collect(Collectors.toSet()); // elle permet de transformer un stream à un autre type de données
 	}
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path ("/{id}")
-	public Sujet find(@PathParam("id") Integer identifiant) {
-		return SujetDao.list().filter(s -> s.getId() == identifiant).findFirst().get();
+	@Path ("/{ids}")
+	public Sujet find(@PathParam("id") int id, @PathParam("ids") Integer identifiant) {
+		return SujetDao.list().filter(s -> s.getFormation().getId() == id && s.getId() == identifiant).findFirst().get(); // elle permet de transformer un stream à un autre type de données
 	}
 	
 	@POST

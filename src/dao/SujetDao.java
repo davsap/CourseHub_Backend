@@ -18,7 +18,7 @@ public class SujetDao {
 	try {
 		t = s.beginTransaction();
 		//code
-		result = s.createQuery("FROM sujets").list().stream();
+		result = s.createQuery("FROM Sujets").list().stream();
 		
 		t.commit();
 		

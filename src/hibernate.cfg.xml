@@ -22,9 +22,11 @@
         <!-- Afficher toutes les requêtes exécutées dans la console -->
         <property name="show_sql">true</property>
          <property name="hibernate.hbm2ddl.auto">create</property> 
+         
          <mapping class="model.User" />
-        <mapping class="model.Formation" />
-         <mapping class="model.Sujet"/>
-        <mapping class="model.Cours"/>
+         <mapping class="model.Formation" />
+         <mapping class="model.Sujet" />
+         <mapping class="model.Cours" />
+        
     </session-factory>
 </hibernate-configuration>

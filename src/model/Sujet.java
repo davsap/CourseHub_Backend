@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.OneToMany;
 
@@ -28,8 +29,13 @@ public class Sujet {
 	@Column(name="titre")
 	private String titre;
 	
-	@OneToMany(mappedBy = "sujet",cascade = CascadeType.ALL)
-	Set<Cours> cours;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="id_cours",nullable=true)
+	private Set<Cours> cours;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_formation")
+	private Formation formation;
 
 	public Integer getId() {
 		return id;
@@ -55,5 +61,19 @@ public class Sujet {
 		this.cours = cours;
 	}
 	
-public Sujet() {}
+	
+	public Formation getFormation() {
+		return formation;
+	}
+
+	public void setFormation(Formation formation) {
+		this.formation = formation;
+	}
+
+	@Override
+	public String toString() {
+		return "Sujet [id=" + id + ", titre=" + titre + ", cours=" + cours + ", formation=" + formation + "]";
+	}
+
+	public Sujet() {}
 }

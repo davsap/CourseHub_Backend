@@ -31,11 +31,7 @@ public class Cours {
 	@Column(name="video")
 	private String video;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="id_sujet")
-	@JsonIgnore
-	private Sujet sujet;
-
+	
 	public Integer getId() {
 		return id;
 	}
@@ -76,14 +72,6 @@ public class Cours {
 		this.video = video;
 	}
 
-	public Sujet getSujet() {
-		return sujet;
-	}
-
-	public void setSujet(Sujet sujet) {
-		this.sujet = sujet;
-	}
 	
-	
-	
+	public Cours() {}
 }
