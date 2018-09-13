@@ -12,6 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import dao.SujetDao;
+import model.Formation;
 import model.Sujet;
 
 @Path("/formations/{id}/sujets")
@@ -33,7 +34,10 @@ public class Sujets {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Sujet create(Sujet sujet) {
+	public Sujet create(@PathParam("id") int id, Sujet sujet) {
+		Formation f = new Formation();
+		f.setId(id);
+		sujet.setFormation(f);
 		return SujetDao.create(sujet);
 	}
 
