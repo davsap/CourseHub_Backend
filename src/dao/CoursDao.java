@@ -18,7 +18,7 @@ public class CoursDao {
 		
 	try {
 		transaction = session.beginTransaction();
-		result = session.createQuery("FROM cours").list().stream();
+		result = session.createQuery("FROM Courses").list().stream();
 		transaction.commit();
 		
 	}catch(Exception e) {
@@ -41,7 +41,7 @@ public class CoursDao {
 	try {
 		transaction = session.beginTransaction();
 		//code
-		Query query = session.createQuery("FROM cours c inner join sujet s where s.id= :sujetID");//.list().stream();
+		Query query = session.createQuery("FROM Courses c inner join Sujets s where s.id= :sujetID");
 		query.setParameter("sujetID",sujetID);
 		result = query.list().stream();
 		

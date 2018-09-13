@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity(name="Formations")
@@ -43,8 +44,13 @@ public class Formation {
 		inverseJoinColumns = { @JoinColumn(name = "id_utilisateur") })
 	private Set<User> users;
 	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="id_formation")
+	private Set<Sujet> sujets;
+	
 	public Formation() {
 		this.users=new HashSet<>();
+		this.sujets = new HashSet<>();
 	}
 	
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -54,8 +60,12 @@ public class Formation {
 	
 	public void addUser (User us) {
 	users.add(us);
+	}
 	
-}
+	public void addSujet(Sujet sujet) {
+		this.sujets.add(sujet);
+	}
+
 	public Integer getId() {
 		return id;
 	}

@@ -9,16 +9,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name="Courses")
 @Table(name="Courses")
 public class Cours {
+
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name="id_cours")
 	private Integer id;
-
+	
 	@Column(name="titre")
 	private String titre;
 	
@@ -31,7 +31,12 @@ public class Cours {
 	@Column(name="video")
 	private String video;
 	
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="id_sujet")
+	private Sujet sujet;
 	
+	public Cours() {}
+
 	public Integer getId() {
 		return id;
 	}
@@ -72,6 +77,22 @@ public class Cours {
 		this.video = video;
 	}
 
+	public Sujet getSujet() {
+		return sujet;
+	}
+
+	public void setSujet(Sujet sujet) {
+		this.sujet = sujet;
+	}
+
+	@Override
+	public String toString() {
+		return "Cours [id=" + id + ", titre=" + titre + ", description=" + description + ", contenu=" + contenu
+				+ ", video=" + video + ", sujet=" + sujet + "]";
+	}
 	
-	public Cours() {}
+	
+	
+	
+	
 }

@@ -1,21 +1,18 @@
 package model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import javax.persistence.OneToMany;
-
+import javax.persistence.Table;
 
 @Entity(name="Sujets")
 @Table(name="Sujets")
@@ -29,13 +26,17 @@ public class Sujet {
 	@Column(name="titre")
 	private String titre;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="id_cours",nullable=true)
-	private Set<Cours> cours;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_formation")
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="id_formation")
 	private Formation formation;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="id_sujet")
+	private Set<Cours> courses;
+
+	public Sujet() {
+		courses = new HashSet<>();
+	}
 
 	public Integer getId() {
 		return id;
@@ -53,15 +54,6 @@ public class Sujet {
 		this.titre = titre;
 	}
 
-	public Set<Cours> getCours() {
-		return cours;
-	}
-
-	public void setCours(Set<Cours> cours) {
-		this.cours = cours;
-	}
-	
-	
 	public Formation getFormation() {
 		return formation;
 	}
@@ -72,8 +64,18 @@ public class Sujet {
 
 	@Override
 	public String toString() {
-		return "Sujet [id=" + id + ", titre=" + titre + ", cours=" + cours + ", formation=" + formation + "]";
+		return "Sujet [id=" + id + ", titre=" + titre + ", formation=" + formation + "]";
 	}
+	
+	public void addCours(Cours cours) {
+		this.courses.add(cours);
+	}
+	
+	
+	
+	
+	
+	
+	
 
-	public Sujet() {}
 }

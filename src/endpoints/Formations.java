@@ -12,7 +12,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import dao.FormationsDAO;
+import dao.SujetDao;
 import model.Formation;
+import model.Sujet;
 
 @Path("/formations")
 public class Formations {
@@ -44,6 +46,31 @@ public class Formations {
 	public Formation findByUserID(@PathParam("id") Integer identifiant) {
 		
 		return FormationsDAO.list().filter(t -> t.getId() == identifiant).findFirst().get();
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path ("/{id}/sujets")
+	public Set<Sujet> sujets(@PathParam("id") int id){
+		return SujetDao.list().filter(s -> s.getFormation().getId() == id).collect(Collectors.toSet()); // elle permet de transformer un stream à un autre type de données
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path ("/{id}/sujets/{ids}")
+	public Sujet find(@PathParam("id") int id, @PathParam("ids") Integer identifiant) {
+		return SujetDao.list().filter(s -> s.getFormation().getId() == id && s.getId() == identifiant).findFirst().get(); // elle permet de transformer un stream à un autre type de données
+	}
+	
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path ("/{id}/sujets")
+	public Sujet create (Sujet sujet) {
+//		Formation f = new Formation();
+//		f.setId(id);
+//		sujet.setFormation(f);
+		return SujetDao.create(sujet);
 	}
 	
 }
