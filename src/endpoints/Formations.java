@@ -66,10 +66,10 @@ public class Formations {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path ("/{id}/sujets")
-	public Sujet create (Sujet sujet) {
-//		Formation f = new Formation();
-//		f.setId(id);
-//		sujet.setFormation(f);
+	public Sujet create (Sujet sujet,@PathParam("id") int id) {
+		Formation f = new Formation();
+		f.setId(id);
+		sujet.setFormation(f);
 		return SujetDao.create(sujet);
 	}
 	
