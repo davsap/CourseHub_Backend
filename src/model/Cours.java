@@ -10,10 +10,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity(name="Courses")
 @Table(name="Courses")
 public class Cours {
 
+	public Cours() {}
+	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name="id_cours")
@@ -31,11 +36,19 @@ public class Cours {
 	@Column(name="video")
 	private String video;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="id_sujet")
+	@JsonIgnore
 	private Sujet sujet;
 	
-	public Cours() {}
+	@JsonIgnore
+	public Sujet getSujet() {
+		return sujet;
+	}
+	@JsonProperty
+	public void setSujet(Sujet sujet) {
+		this.sujet = sujet;
+	}
 
 	public Integer getId() {
 		return id;
@@ -76,23 +89,10 @@ public class Cours {
 	public void setVideo(String video) {
 		this.video = video;
 	}
-
-	public Sujet getSujet() {
-		return sujet;
-	}
-
-	public void setSujet(Sujet sujet) {
-		this.sujet = sujet;
-	}
-
+	
 	@Override
 	public String toString() {
 		return "Cours [id=" + id + ", titre=" + titre + ", description=" + description + ", contenu=" + contenu
 				+ ", video=" + video + ", sujet=" + sujet + "]";
 	}
-	
-	
-	
-	
-	
 }
