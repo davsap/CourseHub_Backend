@@ -15,7 +15,7 @@ import model.Sujet;
 import dao.CoursDao;
 import dao.SujetDao;
 
-@Path("/formations/{id}/sujets/{ids}/courses")
+//@Path("/formations/{id}/sujets/{ids}/courses")
 public class Courses {
 	
 	@GET

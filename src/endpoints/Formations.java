@@ -11,8 +11,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import dao.CoursDao;
 import dao.FormationsDAO;
 import dao.SujetDao;
+import model.Cours;
 import model.Formation;
 import model.Sujet;
 
@@ -73,4 +75,32 @@ public class Formations {
 		return SujetDao.create(sujet);
 	}
 	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path ("/{id}/sujets/{ids}/courses/{idc}")
+	public Cours find(@PathParam("id") int id, @PathParam("ids") Integer identifiant,@PathParam("idc") Integer coursID) {
+		return CoursDao.list().filter
+				(c -> c.getId() == coursID).findFirst().get(); // elle permet de transformer un stream à un autre type de données
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path ("/{id}/sujets/{ids}/courses")
+	public Set<Cours> courses(@PathParam("id") int id,@PathParam("ids") Integer identifiant){
+		return SujetDao.list().filter(c -> c.getId() == identifiant).findFirst().get().getCourses(); // elle permet de transformer un stream à un autre type de données
+	}
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path ("/{id}/sujets/{ids}/courses")
+	public Cours create (Cours cours,@PathParam("id") int id, @PathParam("ids") Integer identifiant) {
+//		Formation f = new Formation();
+//		
+//		f.setId(id);
+		Sujet s = new Sujet();
+		s.setId(identifiant);
+//		s.setFormation(f);
+		cours.setSujet(s);
+		return CoursDao.create(cours);
+	}
 }
