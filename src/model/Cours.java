@@ -27,10 +27,10 @@ public class Cours {
 	@Column(name="titre")
 	private String titre;
 	
-	@Column(name="description")
+	@Column(name="description", length = 1000)
 	private String description;
 	
-	@Column(name="contenu")
+	@Column(name="contenu", length = 6000)
 	private String contenu;
 	
 	@Column(name="video")

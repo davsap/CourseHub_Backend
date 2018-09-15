@@ -18,7 +18,7 @@ public class CoursDao {
 		
 	try {
 		transaction = session.beginTransaction();
-		result = session.createQuery("FROM Courses").list().stream();
+		result = session.createQuery("FROM Courses ORDER BY id_cours ASC").list().stream();
 		transaction.commit();
 		
 	}catch(Exception e) {
