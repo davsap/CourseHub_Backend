@@ -17,7 +17,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import dao.FormationsDAO;
+import dao.SujetDao;
 import dao.UserDAO;
+import model.Cours;
+import model.Formation;
 import model.User;
 
 @Path("/users")
@@ -25,6 +29,13 @@ public class Users {
 	@Context
 	HttpServletResponse response;
 
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path ("/{id}/formations")
+	public Set<Formation> formations(@PathParam("id") int id){
+		return UserDAO.list().filter(u -> u.getId() == id).findFirst().get().getCreations(); // elle permet de transformer un stream à un autre type de données
+	}
+	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Set<User> list(){
