@@ -46,12 +46,19 @@ public class Formations {
 	@DELETE
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
+<<<<<<< HEAD
 	  public void delete(@PathParam("id") Integer identifiant) {
         Formation formation =FormationsDAO.list().filter(t -> t.getId() == identifiant).findFirst().get();
         FormationsDAO.delete(formation);
     }
 
 
+=======
+	public void delete(@PathParam("id") Integer identifiant) {
+		Formation formation =FormationsDAO.list().filter(t -> t.getId() == identifiant).findFirst().get();
+		FormationsDAO.delete(formation);
+	}
+>>>>>>> refs/remotes/origin/master
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
