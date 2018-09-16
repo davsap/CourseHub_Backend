@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity(name="Sujets")
 @Table(name="Sujets")
-public class Sujet {
+public class Sujet implements Comparable<Sujet> {
 	
 	public Sujet() {
 		courses = new HashSet<>();
@@ -83,5 +83,11 @@ public class Sujet {
 	public String toString() {
 		return "Sujet [id=" + id + ", titre=" + titre + ", formation=" + formation + ", courses=" + courses + "]";
 	}
+	
+	
+	 @Override
+	    public int compareTo(Sujet sujet) {
+	        return (int) (this.getId() - sujet.getId());
+	    }
 
 }
