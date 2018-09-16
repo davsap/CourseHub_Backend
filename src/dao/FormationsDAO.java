@@ -44,7 +44,7 @@ public class FormationsDAO {
 		t = s.beginTransaction();
 		//code
 		Query query = s.createQuery("FROM Formations f inner join users u where u.id= :userID");
-		query.setParameter("sujetID",userID);
+		query.setParameter("userID",userID);
 		result = query.list().stream();
 		
 		t.commit();
@@ -110,6 +110,5 @@ public class FormationsDAO {
 	return f;
 
 	}
+}	
 
-	
-}

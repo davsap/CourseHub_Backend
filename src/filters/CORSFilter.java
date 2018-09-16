@@ -39,6 +39,7 @@ public class CORSFilter implements Filter {
 		// TODO Auto-generated method stub
 		((HttpServletResponse)servletResponse).addHeader("Access-Control-Allow-Origin","*");
 		((HttpServletResponse)servletResponse).addHeader("Access-Control-Allow-Headers","*");
+		((HttpServletResponse)servletResponse).addHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
 		filterChain.doFilter(servletRequest, servletResponse);
 	
 	}
