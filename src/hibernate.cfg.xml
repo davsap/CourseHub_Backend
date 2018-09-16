@@ -22,16 +22,11 @@
         <!-- Afficher toutes les requêtes exécutées dans la console -->
         <property name="show_sql">true</property>
         
-<<<<<<< HEAD
         
- <property name="hibernate.hbm2ddl.auto">update</property> 
-
-        
- <!--<property name="hibernate.hbm2ddl.auto">create</property> -->
-=======
- <!--<property name="hibernate.hbm2ddl.auto">create</property> -->
-          
->>>>>>> refs/remotes/origin/master
+       
+              
+ <property name="hibernate.hbm2ddl.auto">update</property>
+ 
          <mapping class="model.User" />
          <mapping class="model.Formation" />
          <mapping class="model.Sujet" />
