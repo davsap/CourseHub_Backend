@@ -9,7 +9,7 @@
         <property name="connection.driver_class">org.postgresql.Driver</property>
         <property name="connection.url">jdbc:postgresql://localhost:5432/CourseHub</property>
         <property name="connection.username">postgres</property>
-        <property name="connection.password">testpost84</property>
+        <property name="connection.password">0803</property>
         
         <!-- Nombre de threads à utiliser -->
         <property name="connection.pool_size">1</property>
@@ -21,7 +21,7 @@
         
         <!-- Afficher toutes les requêtes exécutées dans la console -->
         <property name="show_sql">true</property>
- <property name="hibernate.hbm2ddl.auto">create</property> 
+ <property name="hibernate.hbm2ddl.auto">update</property> 
           
          <mapping class="model.User" />
          <mapping class="model.Formation" />

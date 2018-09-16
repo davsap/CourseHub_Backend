@@ -69,6 +69,7 @@ public class User {
 	formations.add(formation);
 	}
 	
+	
 	@OneToMany(fetch=FetchType.EAGER)
 	@JoinColumn(name="id_utilisateur")
 	private Set<Formation> creations;

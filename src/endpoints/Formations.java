@@ -4,6 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -42,13 +43,29 @@ public class Formations {
 		return FormationsDAO.create(f);
 	}
 	
+	@DELETE
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	  public void delete(@PathParam("id") Integer identifiant) {
+        Formation formation =FormationsDAO.list().filter(t -> t.getId() == identifiant).findFirst().get();
+        FormationsDAO.delete(formation);
+
+    }
+	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path ("/user/{id}")
 	public Formation findByUserID(@PathParam("id") Integer identifiant) {
-		
 		return FormationsDAO.list().filter(t -> t.getId() == identifiant).findFirst().get();
 	}
+	
+	// @DELETE
+	//@Consumes(MediaType.APPLICATION_JSON)
+	//@Produces(MediaType.APPLICATION_JSON)
+	//@Path ("/user/{id}")
+	//public Formation deleteByUserID(@PathParam("id") Integer identifiant) {
+	//	return FormationsDAO.list().filter(t -> t.getId() == identifiant).findFirst().get();
+	//}
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)

@@ -3,12 +3,14 @@ package endpoints;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -22,6 +24,7 @@ import dao.SujetDao;
 import dao.UserDAO;
 import model.Cours;
 import model.Formation;
+import model.Sujet;
 import model.User;
 
 @Path("/users")
@@ -47,6 +50,7 @@ public class Users {
 	public User find(@PathParam("id") Integer identifiant) {
 		return UserDAO.list().filter(t -> t.getId() == identifiant).findFirst().get();
 	}
+	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
@@ -54,6 +58,7 @@ public class Users {
 		return UserDAO.create(u);
 	}
 	
+
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
@@ -89,6 +94,14 @@ public class Users {
 		sha1.update(id.toString().getBytes());	
 		return sha1.digest().toString();
 	}
+	
+	@DELETE
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path ("/{id}")
+	public User delete(@PathParam("id") Integer identifiant) {
+		return UserDAO.list().filter(t -> t.getId() == identifiant).findFirst().get();
+	}	
 	
 	
 }
