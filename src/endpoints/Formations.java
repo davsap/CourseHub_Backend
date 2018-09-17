@@ -46,9 +46,9 @@ public class Formations {
 	@DELETE
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/{id}")
 	  public void delete(@PathParam("id") Integer identifiant) {
-        Formation formation =FormationsDAO.list().filter(t -> t.getId() == identifiant).findFirst().get();
-        FormationsDAO.delete(formation);
+        FormationsDAO.delete(identifiant);
     }
 	
 	@GET

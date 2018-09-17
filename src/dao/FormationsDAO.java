@@ -85,7 +85,7 @@ public class FormationsDAO {
 	return f;
 
 	}
-	public static Formation delete(Formation f) {
+	public static void delete(Integer identifiant) {
 		
 		Session s = HibernateHelper.getSessionFactory().openSession();
 		Transaction t= null;
@@ -94,8 +94,9 @@ public class FormationsDAO {
 		try {
 		t = s.beginTransaction();
 		//code
-		s.delete(f);
-		
+		Query q = s.createQuery("DELETE FROM Formations WHERE id_formation = :id");
+		q.setParameter("id", identifiant);
+		q.executeUpdate();
 		t.commit();
 		
 			}catch(Exception e) {
@@ -107,7 +108,6 @@ public class FormationsDAO {
 				s.close();
 
 			}
-	return f;
 
 	}
 }	
